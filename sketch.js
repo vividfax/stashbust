@@ -30,9 +30,9 @@ function setup() {
         }
     }
 
-    addSlider();
-    addSlider();
-    addSlider();
+    let addButton = createButton("Add colour");
+    addButton.mousePressed(addSlider);
+
     addSlider();
     addSlider();
 }
