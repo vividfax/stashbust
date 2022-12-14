@@ -60,7 +60,7 @@ function addSlider() {
     let parentDiv = createDiv();
     let sliderColourPicker = createColorPicker(color(random(255), random(255), random(255))).parent(parentDiv).style("vertical-align", "middle");
     sliderColourPicker.style("border", "none");
-    let newSlider = createSlider(0, 8, 1.5, 0.5).parent(parentDiv).style("vertical-align", "middle");
+    let newSlider = createSlider(0, 8, 0.5, 0.5).parent(parentDiv).style("vertical-align", "middle");
     let text = createSpan(newSlider.value()).parent(parentDiv).style("vertical-align", "middle");
     createSpan(" m").parent(parentDiv);
     newSlider.style("appearance", "none");
