@@ -8,7 +8,7 @@ class Stitch {
         this.stitchSize = (gridBounds-10)/gridSize;
         this.colour = color(0, 0, 0, 0);
 
-        let scale = 0.08;
+        let scale = 0.2;
         this.perlin = noise(this.x*scale, this.y*scale);
     }
 

@@ -44,8 +44,8 @@ function draw() {
     let totalStitches = 0;
 
     for (let i = 0; i < sliders.length; i++) {
-        totalStitches += floor(sliders[i].value()/8 * 2295);
-        stitchesPerSlider[i] = floor(sliders[i].value()/8 * 2295);
+        totalStitches += floor(sliders[i].value()/8 * 1785);
+        stitchesPerSlider[i] = floor(sliders[i].value()/8 * 1785);
     }
 
     gridSize = floor(sqrt(totalStitches));
