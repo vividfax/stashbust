@@ -25,10 +25,10 @@ class Stitch {
     display() {
 
         let stitchSize = (gridBounds-10)/gridSize;
-        let colour = this.colour;
+        let colour = sliderColourPickers[0].value();
 
         for (let i = 0; i < sliders.length; i++) {
-            if (this.perlin < ratios[i]) {
+            if (this.perlin <= ratios[i]) {
                 colour = sliderColourPickers[i].value();
                 break;
             }

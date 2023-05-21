@@ -13,6 +13,7 @@ let gridBounds;
 let sliders = [];
 let sliderLabels = [];
 let sliderColourPickers = [];
+
 let ratios = [];
 let stitchesPerSlider = [];
 let stitchesCounts = [];
@@ -30,8 +31,7 @@ function setup() {
         }
     }
 
-    let addButton = createButton("Add colour");
-    addButton.mousePressed(addSlider);
+    select("#add-colour-button").mousePressed(addSlider);
 
     addSlider();
     addSlider();
@@ -58,20 +58,30 @@ function draw() {
 function addSlider() {
 
     let parentDiv = createDiv();
-    let sliderColourPicker = createColorPicker(color(random(255), random(255), random(255))).parent(parentDiv).style("vertical-align", "middle");
-    sliderColourPicker.style("border", "none");
+    parentDiv.id(sliders.length);
+    parentDiv.parent("#slider-list")
+    parentDiv.attribute("draggable", true);
+    parentDiv.attribute("ondragstart", "drag(event)");
+    parentDiv.class("slider");
+    let colour = color(random(255), random(255), random(255));
+    let sliderColourPicker = createColorPicker(colour).parent(parentDiv).style("vertical-align", "middle");
+    sliderColourPicker.class("colour-picker");
     let newSlider = createSlider(0, 8, 0.5, 0.5).parent(parentDiv).style("vertical-align", "middle");
+    createSpan(" ").parent(parentDiv);
     let text = createSpan(newSlider.value()).parent(parentDiv).style("vertical-align", "middle");
     createSpan(" m").parent(parentDiv);
     newSlider.style("appearance", "none");
     newSlider.style("border-radius", "4px");
     newSlider.style("height", "8px");
+    newSlider.attribute("draggable", false);
 
     sliders.push(newSlider);
     sliderLabels.push(text);
     sliderColourPickers.push(sliderColourPicker);
     ratios.push(1);
     stitchesPerSlider.push(0);
+
+    if (sliders.length >= 11) select("#add-colour-button").style("display", "none");
 }
 
 function getRatios() {
@@ -119,4 +129,47 @@ function display() {
         sliderLabels[i].html(sliders[i].value());
         sliders[i].style("background", sliderColourPickers[i].value());
     }
+}
+
+function allowDrop(ev) {
+
+    ev.preventDefault();
+}
+
+function drag(ev) {
+
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+
+    ev.preventDefault();
+    let data = ev.dataTransfer.getData("text");
+    let parent = document.getElementById("slider-list");
+    let dragElement = document.getElementById(data);
+    let dropElement = ev.target;
+    if (dropElement.parentNode != parent) dropElement = dropElement.parentNode;
+    if (dropElement.parentNode != parent) return;
+
+    let dropBox = dropElement.getBoundingClientRect();
+    let dropCentreY = dropBox.top + dropBox.height/2;
+
+    let dragIndex = $(dragElement).index();
+    let dropIndex = $(dropElement).index();
+
+    if (dropCentreY < event.pageY) {
+        parent.insertBefore(dragElement, dropElement.nextSibling);
+    } else {
+        parent.insertBefore(dragElement, dropElement);
+    }
+
+    console.log(dragIndex, dropIndex);
+
+    let dragSlider = sliders.splice(dragIndex, 1);
+    let dragLabel = sliderLabels.splice(dragIndex, 1);
+    let dragPicker = sliderColourPickers.splice(dragIndex, 1);
+
+    sliders.splice(dropIndex, 0, dragSlider[0]);
+    sliderLabels.splice(dropIndex, 0, dragLabel[0]);
+    sliderColourPickers.splice(dropIndex, 0, dragPicker[0]);
 }

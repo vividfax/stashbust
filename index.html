@@ -7,31 +7,17 @@
 
     <title>stashbust</title>
 
+    <link rel="stylesheet" href="./style.css">
+
     <script src="libraries/p5.min.js"></script>
+    <script src="libraries/jquery-3.7.0.min.js"></script>
     <script src="sketch.js"></script>
     <script src="Stitch.js"></script>
-
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: #E0D3DE;
-            font-family: 'Fira Code', monospace;
-        }
-        canvas {
-            margin: auto;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        slider {
-            background: #000;
-        }
-    </style>
 </head>
 <body>
+    <div id="right-bar">
+        <div id="slider-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <button id="add-colour-button">Add colour</button>
+    </div>
 </body>
 </html>
