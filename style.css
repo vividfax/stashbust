@@ -31,20 +31,21 @@ canvas {
 }
 
 button {
+    margin-left: 5px;
     margin-top: 20px;
-    width: 228px;
+    width: 223px;
     height: 40px;
     border-radius: 5px;
     border-style: none;
     font-size: 20px;
-    color: #fff;
-    background-color: #4F5072;
+    color: #5a0074;
+    background-color: #fff;
     font-family: 'Fira Code', monospace;
 }
 
 button:hover {
-    color: #4F5072;
-    background-color: #fff;
+    color: #fff;
+    background-color: #c449ff;
 }
 
 .colour-picker {
