@@ -18,6 +18,8 @@ let ratios = [];
 let stitchesPerSlider = [];
 let stitchesCounts = [];
 
+let gridSizeSpan;
+
 function setup() {
 
     gridBounds = windowWidth > 700 ? 700 : windowWidth - 10;
@@ -32,6 +34,7 @@ function setup() {
     }
 
     select("#add-colour-button").mousePressed(addSlider);
+    gridSizeSpan = select("#grid-size");
 
     addSlider();
     addSlider();
@@ -49,6 +52,7 @@ function draw() {
     }
 
     gridSize = floor(sqrt(totalStitches));
+    gridSizeSpan.html(gridSize+"x"+gridSize);
 
     getRatios();
 
@@ -62,11 +66,12 @@ function addSlider() {
     parentDiv.parent("#slider-list")
     parentDiv.attribute("draggable", true);
     parentDiv.attribute("ondragstart", "drag(event)");
-    parentDiv.class("slider");
+    parentDiv.class("slider-holder");
     let colour = color(random(255), random(255), random(255));
     let sliderColourPicker = createColorPicker(colour).parent(parentDiv).style("vertical-align", "middle");
     sliderColourPicker.class("colour-picker");
     let newSlider = createSlider(0, 8, 0.5, 0.5).parent(parentDiv).style("vertical-align", "middle");
+    newSlider.class("slider");
     createSpan(" ").parent(parentDiv);
     let text = createSpan(newSlider.value()).parent(parentDiv).style("vertical-align", "middle");
     createSpan(" m").parent(parentDiv);
@@ -81,7 +86,7 @@ function addSlider() {
     ratios.push(1);
     stitchesPerSlider.push(0);
 
-    if (sliders.length >= 11) select("#add-colour-button").style("display", "none");
+    if (sliders.length >= 10) select("#add-colour-button").style("display", "none");
 }
 
 function getRatios() {

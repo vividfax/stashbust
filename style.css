@@ -26,8 +26,32 @@ canvas {
     color: #4F5072;
 }
 
-.slider {
+.slider-holder {
     width: fit-content;
+    padding-right: 5px;
+    background-color: #E0D3DE;
+}
+
+.slider {
+    border: 1px solid #777777;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #777777;
+    background: #F2EFE9;
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #777777;
+    background: #F2EFE9;
 }
 
 button {
@@ -36,7 +60,7 @@ button {
     width: 223px;
     height: 40px;
     border-radius: 5px;
-    border-style: none;
+    border: 1px solid #777777;
     font-size: 20px;
     color: #5a0074;
     background-color: #fff;
