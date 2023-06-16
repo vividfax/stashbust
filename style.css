@@ -43,7 +43,7 @@ canvas {
     height: 20px;
     border-radius: 50%;
     border: 1px solid #777777;
-    background: #F2EFE9;
+    background: #fff;
 }
 
 .slider::-moz-range-thumb {
@@ -51,7 +51,7 @@ canvas {
     height: 20px;
     border-radius: 50%;
     border: 1px solid #777777;
-    background: #F2EFE9;
+    background: #fff;
 }
 
 button {
@@ -62,14 +62,14 @@ button {
     border-radius: 5px;
     border: 1px solid #777777;
     font-size: 20px;
-    color: #5a0074;
+    color: #4F5072;
     background-color: #fff;
     font-family: 'Fira Code', monospace;
 }
 
 button:hover {
     color: #fff;
-    background-color: #c449ff;
+    background-color: #4F5072;
 }
 
 .colour-picker {
